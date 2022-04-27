@@ -1,0 +1,33 @@
+.pcList {
+  display: grid;
+  grid-template-columns: 15rem 15rem 15rem 15rem 15rem;
+  grid-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  background-color: #f3f388;
+  font-family: "Baloo Paaji 2", cursive;
+  margin: 1rem;
+}
+.title {
+  text-align: center;
+  color: black;
+  font-weight: bolder;
+  background-color: #f5e3e3;
+  height: 2.5rem;
+  margin-top: 1rem;
+}
+
+.button {
+  text-align: center;
+}
+.button button {
+  padding: 1rem 1.2rem;
+  font-weight: bolder;
+}
+
+.button button:hover {
+  background: rgb(19, 18, 18);
+  color: white;
+  border-radius: 2rem;
+}

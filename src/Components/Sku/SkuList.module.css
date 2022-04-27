@@ -1,0 +1,76 @@
+.outer {
+  background-color: rgb(255, 255, 255);
+}
+.displayimage {
+  width: 100%;
+  height: auto;
+}
+.title {
+  font-size: x-large;
+  text-align: center;
+}
+.imgdiv {
+  width: 40%;
+  height: 30rem;
+  background-color: black;
+  float: left;
+}
+.descriptiondiv {
+  width: 60%;
+  height: 30rem;
+  background-color: rgb(245, 231, 231);
+  float: right;
+  text-align: center;
+}
+.descriptiondiv div,
+.descriptiondiv button {
+  margin: 1.5rem;
+  font-size: larger;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  text-align: center;
+}
+.nxtButton {
+  background-color: rgb(245, 248, 241);
+  color: black;
+  padding: 0.6rem 1.3rem;
+  font-size: large;
+  border-radius: 1rem;
+}
+.nxtButton:hover {
+  border-radius: 3rem;
+  background-color: rgb(236, 156, 51);
+}
+.nxtButton:disabled {
+  cursor: not-allowed;
+  background-color: rgb(252, 249, 249);
+  color: rgb(214, 225, 235);
+}
+.cart {
+  background-color: rgb(181, 247, 94);
+  color: black;
+  border-radius: 2rem;
+  padding: 1rem 3rem;
+  font-size: larger;
+  border-style: hidden;
+}
+.cart:hover {
+  color: black;
+  border-style: solid;
+}
+
+.specifications {
+  color: blue;
+}
+.stockstatus {
+  color: red;
+}
+.cart:disabled {
+  cursor: not-allowed;
+  font-weight: lighter;
+}
+.back {
+  border-radius: 1rem;
+  background-color: rgb(61, 236, 120);
+  padding: 0.5rem;
+  font-weight: bold;
+}

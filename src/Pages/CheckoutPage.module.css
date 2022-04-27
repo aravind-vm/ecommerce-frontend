@@ -1,0 +1,21 @@
+.container {
+  background-color: rgb(199, 241, 100);
+  color: black;
+  width: 70%;
+  margin-left: 15%;
+  height: auto;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+.container span {
+  margin: 2rem 2rem;
+}
+
+.container button {
+  background-color: rgb(136, 136, 161);
+  border-radius: 1.3rem;
+  font-weight: bold;
+  margin: 1rem;
+  padding: 0.9rem 2rem;
+}

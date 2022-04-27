@@ -1,0 +1,43 @@
+.cart {
+  max-width: 100%;
+  background-color: #313131;
+  color: white;
+  overflow: scroll;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+.cart h2 {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.btnClose {
+  font-size: large;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  margin-left: 10rem;
+}
+
+.btnPurchase {
+  font-size: large;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  margin-left: 3rem;
+}
+.btnClose:hover,
+.btnPurchase:hover {
+  background-color: black;
+  color: white;
+}
+
+.btnPurchase:disabled:hover {
+  cursor: not-allowed;
+  background-color: grey;
+  color: black;
+}
