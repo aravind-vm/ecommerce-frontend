@@ -130,17 +130,19 @@ const cartSlice = createSlice({
   },
 });
 export const cartAction = cartSlice.actions;
-export const addToCartHandler = (product) => {
+export const addToCartHandler = (product, accessToken) => {
   return async (dispatch) => {
     try {
+      console.log(accessToken);
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("add item to cart");
-      console.log(product);
+      console.log(header);
       const response = await fetch(`http://localhost:8080/api/order/update`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          //"Authentication": 'Bearer Token '+toekn
-        },
+        headers: header,
         body: JSON.stringify(product),
       });
       if (!response.ok) {
@@ -159,17 +161,18 @@ export const addToCartHandler = (product) => {
   };
 };
 
-export const removeFromCartHandler = (product) => {
+export const removeFromCartHandler = (product, accessToken) => {
   return async (dispatch) => {
     try {
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("remove order itemcart");
       console.log(product);
       const response = await fetch(`http://localhost:8080/api/order/update`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          //"Authentication": 'Bearer Token '+toekn
-        },
+        headers: header,
         body: JSON.stringify(product),
       });
       if (!response.ok) {
@@ -186,17 +189,18 @@ export const removeFromCartHandler = (product) => {
   };
 };
 
-export const createCartHandler = (product) => {
+export const createCartHandler = (product, accessToken) => {
   return async (dispatch) => {
     try {
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("create order cart");
       console.log(product);
       const response = await fetch(`http://localhost:8080/api/order`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          //"Authentication": 'Bearer Token '+toekn
-        },
+        headers: header,
         body: JSON.stringify(product),
       });
       if (!response.ok) {
@@ -217,21 +221,35 @@ export const createCartHandler = (product) => {
   };
 };
 
-export const fetchCartFromDBHandler = (userId) => {
+export const fetchCartFromDBHandler = (userId, accessToken) => {
   return async (dispatch) => {
     try {
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("fetch cart from db");
-      const response = await fetch(`http://localhost:8080/api/order/${userId}`);
+      const response = await fetch(
+        `http://localhost:8080/api/order/${userId}`,
+        {
+          method: "GET",
+          headers: header,
+          redirect: "follow",
+        }
+      );
       if (!response.ok) {
+        console.log(response.statusText);
         throw new Error("Some Error!");
       }
 
+      console.log(response.statusText);
       const data = await response.json();
+      console.log(data);
       if (data.orderId) {
         dispatch(cartAction.loadCartFromDB(data));
       }
     } catch (error) {
-      console.log("error");
+      console.log(error);
       dispatch(
         cartAction.loadCartFromDB({
           orderId: null,
@@ -245,17 +263,18 @@ export const fetchCartFromDBHandler = (userId) => {
     }
   };
 };
-export const checkoutCartHandler = (product) => {
+export const checkoutCartHandler = (product, accessToken) => {
   return async (dispatch) => {
     try {
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("checkout order itemcart");
       console.log(product);
       const response = await fetch(`http://localhost:8080/api/order/checkout`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          //"Authentication": 'Bearer Token '+toekn
-        },
+        headers: header,
         body: JSON.stringify(product),
       });
       if (!response.ok) {
@@ -280,19 +299,20 @@ export const checkoutCartHandler = (product) => {
     }
   };
 };
-export const cancelOrderCartHandler = (id) => {
+export const cancelOrderCartHandler = (id, accessToken) => {
   return async (dispatch) => {
     try {
+      const header = {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      };
       console.log("cancel order itemcart");
 
       const response = await fetch(
         `http://localhost:8080/api/order/cancel/${id}`,
         {
           method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            //"Authentication": 'Bearer Token '+toekn
-          },
+          headers: header,
         }
       );
       if (!response.ok) {

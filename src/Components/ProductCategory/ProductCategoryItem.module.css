@@ -38,6 +38,7 @@
   letter-spacing: 0.05rem;
   margin: 1em;
   width: 13rem;
+  color: black;
 }
 
 .btn:focus,

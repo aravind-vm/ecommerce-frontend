@@ -11,9 +11,9 @@
   margin: auto;
   align-items: center;
 }
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+.maincontainer input[type="text"],
+.maincontainer input[type="password"],
+.maincontainer input[type="email"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -22,7 +22,7 @@ input[type="email"] {
   box-sizing: border-box;
 }
 
-button {
+.maincontainer button {
   background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
@@ -33,18 +33,18 @@ button {
   width: 50%;
 }
 
-button:hover {
+.maincontainer button:hover {
   opacity: 0.8;
 }
 
-.signup {
+.maincontainer .signup {
   width: 30%;
   padding: 10px 18px;
   background-color: #0b9260;
   margin: 1rem 11rem;
 }
 
-.container {
+.maincontainer .container {
   padding: 16px;
   align-items: center;
 }
@@ -58,4 +58,8 @@ button:hover {
   .cancelbtn {
     width: 100%;
   }
+}
+
+.container p {
+  color: red;
 }

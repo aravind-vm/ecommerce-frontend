@@ -7,13 +7,17 @@ import classes from "./NavBar.module.css";
 const NavBar = () => {
   const showCart = useSelector((state) => state.ui.showCart);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const name = useSelector((state) => state.user.user.name);
 
   return (
     <>
       <header className={classes.header}>
-        <Link to="/">
-          <div className={classes.logo}>React Mobile E Store</div>
-        </Link>
+        <div className={classes.logo}>
+          React MobEStore
+          <span className={classes.welcome}>
+            {isLoggedIn && `Welcome ${name}`}
+          </span>
+        </div>
         <nav>
           <ul>
             <li>
@@ -23,7 +27,9 @@ const NavBar = () => {
 
             <li>{isLoggedIn && <Link to="/profile">Profile</Link>}</li>
             <li>{isLoggedIn && <CartButton />}</li>
-            <li>{isLoggedIn && <button>Logout</button>}</li>
+            <li>
+              <Link to="/logout">{isLoggedIn && <button>Logout</button>}</Link>
+            </li>
           </ul>
         </nav>
       </header>

@@ -1,0 +1,17 @@
+.diloguebox {
+  height: 10rem;
+  font-weight: bold;
+  font-size: large;
+  padding-top: 3rem;
+  padding-left: 2rem;
+}
+
+.diloguebox button {
+  margin-top: 2rem;
+  padding: 0.7rem 2rem;
+  margin-left: 2rem;
+}
+.diloguebox button:hover {
+  color: white;
+  background-color: black;
+}

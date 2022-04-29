@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import classes from "./ProductCategoryList.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductCategoryListHandler } from "../../Store/productCategory-slice";

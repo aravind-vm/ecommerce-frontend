@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./CartItem.module.css";
 import {
@@ -6,6 +6,7 @@ import {
   removeFromCartHandler,
 } from "../../Store/cart-slice";
 const CartItem = (props) => {
+  const accessToken = useSelector((state) => state.user.accessToken);
   const totalPrice = props.item.item.quantity * props.item.item.unitPrice;
   const dispatch = useDispatch();
 
@@ -13,35 +14,39 @@ const CartItem = (props) => {
 
   const removeItemHandler = () => {
     const quantity = props.item.item.quantity - 1;
-    console.log("insde -");
     dispatch(
-      removeFromCartHandler({
-        orderId: props.item.orderId,
-        item: {
-          skuId: props.item.item.skuId,
-          quantity,
-          name: props.item.item.name,
-          unitPrice: props.item.item.unitPrice,
-          fullfilledStockQty: props.item.item.fullfilledStockQty,
+      removeFromCartHandler(
+        {
+          orderId: props.item.orderId,
+          item: {
+            skuId: props.item.item.skuId,
+            quantity,
+            name: props.item.item.name,
+            unitPrice: props.item.item.unitPrice,
+            fullfilledStockQty: props.item.item.fullfilledStockQty,
+          },
         },
-      })
+        accessToken
+      )
     );
   };
 
   const addItemHandler = () => {
     const quantity = props.item.item.quantity + 1;
-    console.log("insde +");
     dispatch(
-      addToCartHandler({
-        orderId: props.item.orderId,
-        item: {
-          skuId: props.item.item.skuId,
-          quantity,
-          name: props.item.item.name,
-          unitPrice: props.item.item.unitPrice,
-          fullfilledStockQty: props.item.item.fullfilledStockQty,
+      addToCartHandler(
+        {
+          orderId: props.item.orderId,
+          item: {
+            skuId: props.item.item.skuId,
+            quantity,
+            name: props.item.item.name,
+            unitPrice: props.item.item.unitPrice,
+            fullfilledStockQty: props.item.item.fullfilledStockQty,
+          },
         },
-      })
+        accessToken
+      )
     );
   };
 

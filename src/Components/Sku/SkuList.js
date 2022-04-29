@@ -5,6 +5,7 @@ import { addToCartHandler, createCartHandler } from "../../Store/cart-slice";
 import classes from "./SkuList.module.css";
 const SkuList = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const accessToken = useSelector((state) => state.user.accessToken);
   const location = useLocation();
   const [skuList, setSkuList] = useState([]);
   const [sku, setSku] = useState({});
@@ -18,7 +19,6 @@ const SkuList = () => {
   const navigate = useNavigate();
   const fetchSkuListHandler = useCallback(async function () {
     try {
-      console.log("fetch sku list");
       const response = await fetch(
         `http://localhost:8080/api/sku/product/${productId}`
       );
@@ -26,7 +26,6 @@ const SkuList = () => {
         throw new Error("sku list not found!");
       }
       const data = await response.json();
-      console.log(data);
       setSkuList(data);
       setSku({ data: data[0], index: 0 });
     } catch (error) {
@@ -68,49 +67,56 @@ const SkuList = () => {
     skuOutOfStock.skuId === sku.data.id ? skuOutOfStock.value : false;
   const addToCartHandlerCall = () => {
     if (orderId) {
-      console.log(orderId);
       const orderItem = orderItems.find((item) => item.skuId === sku.data.id);
       if (orderItem) {
         const quantity = orderItem.quantity + 1;
         dispatch(
-          addToCartHandler({
-            orderId,
-            item: {
-              skuId: sku.data.id,
-              quantity,
-              name: productName,
-              unitPrice: sku.data.unitPrice,
-              fullfilledStockQty: orderItem.fullfilledStockQty,
+          addToCartHandler(
+            {
+              orderId,
+              item: {
+                skuId: sku.data.id,
+                quantity,
+                name: productName,
+                unitPrice: sku.data.unitPrice,
+                fullfilledStockQty: orderItem.fullfilledStockQty,
+              },
             },
-          })
+            accessToken
+          )
         );
       } else {
         dispatch(
-          addToCartHandler({
-            orderId,
+          addToCartHandler(
+            {
+              orderId,
+              item: {
+                skuId: sku.data.id,
+                quantity: 1,
+                name: productName,
+                unitPrice: sku.data.unitPrice,
+              },
+            },
+            accessToken
+          )
+        );
+      }
+    } else {
+      //createorder function
+      dispatch(
+        createCartHandler(
+          {
+            userId,
             item: {
               skuId: sku.data.id,
               quantity: 1,
               name: productName,
               unitPrice: sku.data.unitPrice,
             },
-          })
-        );
-      }
-    } else {
-      //createorder function
-      dispatch(
-        createCartHandler({
-          userId,
-          item: {
-            skuId: sku.data.id,
-            quantity: 1,
-            name: productName,
-            unitPrice: sku.data.unitPrice,
           },
-        })
+          accessToken
+        )
       );
-      console.log("create order");
     }
   };
   return (

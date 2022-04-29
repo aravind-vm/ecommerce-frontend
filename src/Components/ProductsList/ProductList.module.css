@@ -24,6 +24,7 @@
 .button button {
   padding: 1rem 1.2rem;
   font-weight: bolder;
+  width: 3rem;
 }
 
 .button button:hover {

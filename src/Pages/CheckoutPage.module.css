@@ -4,14 +4,17 @@
   width: 70%;
   margin-left: 15%;
   height: auto;
-  align-items: center;
-  align-content: center;
-  text-align: center;
+  padding-left: 20%;
+}
+.container h2 {
+  margin-left: 15%;
 }
 .container span {
   margin: 2rem 2rem;
 }
-
+.addresscon div {
+  margin-left: 20%;
+}
 .container button {
   background-color: rgb(136, 136, 161);
   border-radius: 1.3rem;
